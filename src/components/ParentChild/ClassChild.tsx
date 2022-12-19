@@ -4,7 +4,7 @@ type FormState = {
   count: number;
 };
 type ParentProps = {
-  parentMethod: Function;
+  parentMethod: (a:number) => void;
 };
 
 export class ClassChild extends Component<ParentProps, FormState> {

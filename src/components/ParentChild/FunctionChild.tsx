@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 interface ChildProps {
-  parentMethod: Function;
+  parentMethod: (a:number) => void;
 }
 
 export const FunctionChild = (props: ChildProps) => {

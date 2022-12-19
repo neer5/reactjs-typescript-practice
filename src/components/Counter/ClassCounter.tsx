@@ -5,7 +5,7 @@ type CounterState = {
   
 };
 
-export class ClassCounter extends Component<{}, CounterState> {
+export class ClassCounter extends Component<Record<string, never>, CounterState> {
   constructor(props: never) {
     // Calling super class constructor
     super(props);

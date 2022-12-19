@@ -7,7 +7,7 @@ type FilterState = {
   searchString: string;
 };
 
-export class ClassFilter extends Component<{}, FilterState> {
+export class ClassFilter extends Component<Record<string, never>, FilterState> {
   constructor(props: never) {
     // Calling super class constructor
     super(props);
