@@ -25,15 +25,14 @@ function App() {
   */
   const { loginParam } = useContext(LoginContext);
   return (
+    <AuthContext>
     <Router>
       <div className="App">
         {/* <LoginButton loginFunction={loginFunction} isLogin={isLogin}/>
         <h1>Welcome {username}</h1> */}
         {/* {isLogin ? <button>Logout</button> : <button>Login</button>} */}
-        <AuthContext>
             <ContextLoginButton />
-            <h1>Dashboard Welcome {loginParam?.username || 'Guest'}</h1>
-        </AuthContext>
+            <h1>Welcome {loginParam?.username}</h1>
         {/* <AuthContext /> */}
         <hr />
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -91,6 +90,7 @@ function App() {
         </Routes>
       </div>
     </Router>
+        </AuthContext>
   );
 }
 
