@@ -5,7 +5,7 @@ type FormState = {
   count: number;
 };
 
-export class ClassParent extends Component<{}, FormState> {
+export class ClassParent extends Component<Record<string, never>, FormState> {
   constructor(props: never) {
     // Calling super class constructor
     super(props);
