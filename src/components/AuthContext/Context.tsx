@@ -1,10 +1,11 @@
 import React, { createContext, useState } from 'react';
-import { LoginContextProviderProps, LoginContextType, LoginParam } from '../../types/login';
+import { ContextProviderProps } from '../../types/common';
+import { LoginContextType, LoginParam } from '../../types/login';
 import { ContextLoginButton } from './LoginButton';
 
 export const LoginContext = createContext({} as LoginContextType);
 
-export const AuthContext = ({ children }: LoginContextProviderProps) => {
+export const AuthContext = ({ children }: ContextProviderProps) => {
   const [loginParam, setLoginParam] = useState<LoginParam>({} as LoginParam);
   const setloginContext = (loginParamData: LoginParam) => setLoginParam(loginParamData);
   if (children) {

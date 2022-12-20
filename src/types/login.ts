@@ -12,7 +12,3 @@ export type LoginContextType = {
   loginParam: LoginParam;
   setLoginParam: (LoginParam: LoginParam) => void; // React.Dispatch<React.SetStateAction<LoginParam>>;
 };
-
-export type LoginContextProviderProps = {
-  children?: React.ReactNode;
-};
