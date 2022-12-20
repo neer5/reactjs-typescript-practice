@@ -8,22 +8,33 @@ import { Filter } from './components/Filter/Filter';
 import { RadioColor } from './components/RadioColor/RadioColor';
 import { ParentChild } from './components/ParentChild/ParentChild';
 import { Login } from './components/Auth/Login';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { LoginButton } from './components/Auth/LoginButton';
+import { ContextLoginButton} from './components/AuthContext/LoginButton';
+import { AuthContext, LoginContext } from './components/AuthContext/Context';
+import { LoginContextForm } from './components/AuthContext/Login';
 
 function App() {
+  /*
   const [isLogin, setIsLogin] = useState(false);
   const [username, setUsername] = useState('');
   const loginFunction = (loginState: boolean, username?: string) => {
     setIsLogin(loginState)
     setUsername(username || '')
   }
+  */
+  const { loginParam } = useContext(LoginContext);
   return (
     <Router>
       <div className="App">
-      <LoginButton loginFunction={loginFunction} isLogin={isLogin}/>
+        {/* <LoginButton loginFunction={loginFunction} isLogin={isLogin}/>
+        <h1>Welcome {username}</h1> */}
         {/* {isLogin ? <button>Logout</button> : <button>Login</button>} */}
-        <h1>Welcome {username}</h1>
+        <AuthContext>
+            <ContextLoginButton />
+            <h1>Dashboard Welcome {loginParam?.username || 'Guest'}</h1>
+        </AuthContext>
+        {/* <AuthContext /> */}
         <hr />
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <ul className="navbar-nav mr-auto">
@@ -75,7 +86,8 @@ function App() {
           <Route path="/filter" element={<Filter />} />
           <Route path="/radio-color" element={<RadioColor />} />
           <Route path="/parent-child" element={<ParentChild />} />
-          <Route path="/login" element={<Login loginFunction={loginFunction}/>} />
+          {/* <Route path="/login" element={<Login loginFunction={loginFunction}/>} /> */}
+          <Route path="/context-login" element={<LoginContextForm />} />
         </Routes>
       </div>
     </Router>
