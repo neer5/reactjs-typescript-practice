@@ -7,6 +7,7 @@ import { Counter } from './components/Counter/Counter';
 import { Filter } from './components/Filter/Filter';
 import { RadioColor } from './components/RadioColor/RadioColor';
 import { ParentChild } from './components/ParentChild/ParentChild';
+import { Todo } from './components/Todo/Todo';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <li><Link to={'/filter'} className="nav-link">Filter</Link></li>
             <li><Link to={'/radio-color'} className="nav-link">Radio Color</Link></li>
             <li><Link to={'/parent-child'} className="nav-link">Parent Child</Link></li>
+            <li><Link to={'/todo'} className="nav-link">Todo</Link></li>
           </ul>
           </nav>
           <Routes>
@@ -33,6 +35,7 @@ function App() {
               <Route path='/filter' element={<Filter />} />
               <Route path='/radio-color' element={<RadioColor />} />
               <Route path='/parent-child' element={<ParentChild />} />
+              <Route path='/todo' element={<Todo />} />
           </Routes>
     </div>
     </Router>
