@@ -1,31 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import { User } from '../../types/todo';
+import { useEffect, useState } from 'react';
+import { Item } from '../../types/todo';
+import "../../App.css";
 export const Todo = () => {
-  const [userName, setUserName] = useState<string>('');
+  const [itemName, setItemName] = useState<string>('');
   const [error, setError] = useState<string>('');
-  const [users, setUsers] = useState<User[]>([] as User[]);
+  const [items, setItems] = useState<Item[]>([] as Item[]);
   const [id, setId] = useState<number>(0);
   useEffect(() => {
-    setUsers([]);
+    setItems([]);
   }, []);
-  const deleteUser = (id: number) => {
+  const deleteItem = (id: number) => {
     // const id = +e.currentTarget.getAttribute("data-id");
-    const filteredUsers = users.filter((user) => user.id !== id);
-    setUsers(filteredUsers);
+    const filteredItems = items.filter((item) => item.id !== id);
+    setItems(filteredItems);
   };
-  const addUser = () => {
-    if(userName.length <= 3){
-      setError('Username length should be greater than or equal to 3')
+  const addItem = () => {
+    if(!itemName.length){
+      setError('Please enter item name')
+    }
+    else if(itemName.length <= 3){
+      setError('Item name length should be greater than or equal to 3')
     }
     else{
       const nextId = id + 1;
       setId(nextId);
-      users.push({
+      items.push({
         id: nextId,
-        name: userName
+        name: itemName
       });
-      setUsers(users);
-      setUserName('');
+      setItems(items);
+      setItemName('');
       setError('');
     }
   };
@@ -35,20 +39,17 @@ export const Todo = () => {
       Name
       <input
         type="text"
-        value={userName}
-        onChange={(e) => setUserName(e.target.value)}
+        value={itemName}
+        onChange={(e) => setItemName(e.target.value)}
       />
       <div 
-      style={{
-        color: '#f50057'
-      }}>{error}</div>
-      <br />
-      <button type="submit" onClick={addUser}>
+      className='error'>{error}</div>
+      <button className="submit" onClick={addItem}>
         Submit
       </button>
       <br />
-      {users.length ? (
-        <table border={1}>
+      
+        <table id="items">
           <thead>
             <tr>
               <th>Id</th>
@@ -57,26 +58,29 @@ export const Todo = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
-              <tr key={user.id}>
-                <td>{user.id}</td>
-                <td>{user.name}</td>
+          {items.length ? 
+            items.map((item) => (
+              <tr key={item.id}>
+                <td>{item.id}</td>
+                <td>{item.name}</td>
                 <td>
                   <button
                     type="button"
-                    onClick={() => deleteUser(user.id)}
-                    value={user.id}
+                    onClick={() => deleteItem(item.id)}
+                    value={item.id}
                   >
                     Delete
                   </button>
                 </td>
               </tr>
-            ))}
+            ))
+          : (
+            <tr >
+                <td colSpan={3}>No items</td>
+              </tr>
+          )}
           </tbody>
         </table>
-      ) : (
-        'No users found'
-      )}
     </>
   );
 };
